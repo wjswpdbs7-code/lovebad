@@ -1,84 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOVEBAD - home</title>
+    <title>lovebad - home</title>
     <style>
-        body{
-            background-color: white;
-                font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
-        }
-        .menu{
-            margin-top: 30px;
+        body {
+            background-color: #f7f9fc;
+            font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
             display: flex;
-            justify-content: center;
-            background-color: white;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
         }
-        .menu a{
-            text-decoration: none;
-            color: #333;
-            padding: 10px 20px;
+
+        .menu {
+            margin-top: 50px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 90%;
+            max-width: 400px;
+            background-color: white;
+            padding: 15px;
             border-radius: 20px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+
+        .menu img {
             margin: 0 10px;
-            border: 2px solid orange;
+            cursor: pointer;
         }
-        .welcome{
-            text-align: center;
-            margin-top: 0px;
-            background-color:orange;
-            border-radius: 20px;
-            color: #ff6600;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-        }
-        .profile{
-            margin-top: 30px;
+
+        .container {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
             background-color: white;
-        }
-        .profile ul{
-            list-style: none;
-            background-color: white;
-            padding: 20px;
-            border-radius: 20px;
-            color: #333;
+            padding: 40px;
+            border-radius: 12px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+            width: 90%;
+            max-width: 600px;
+            box-sizing: border-box;
+            margin-top: 50px;
         }
-        h1{
-            margin-left: 50px;
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 30px;
+            width: 100%;
+            border-bottom: 2px solid #ff6600;
+            padding-bottom: 15px;
+        }
+
+        .header-section h1 {
+            color: #ff6600;
+            font-size: 1.8rem;
+            margin-top: 0;
+            margin-bottom: 5px;
+        }
+
+        .info-list {
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .info-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 10px;
+            border-bottom: 1px solid #eee;
+            font-size: 1rem;
+        }
+
+        .info-list li:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #555;
+        }
+
+        .info-value {
+            color: #333;
+            text-align: right;
         }
     </style>
 </head>
+
 <body>
-    <h1>프로필</h1>
-    <div class="welcome">
-        <h1>"name"님 환영합니다!</h1>
-    </div>
-    <fieldset id="profile">
-        <legend>프로필 정보</legend>
-        <ul>
-            <li>이름 : "name"</li>
-            <li>멤버 번호    : "member_id"</li>
-            <li>성별 : "gender"</li>
-            <li>나이대 : "age"</li>
-            <li>지역 : "region"</li>
-            <li>급수 : "level"</li>
-            <li>경험 년수 : "experience_years"</li>
-            <li>자기소개 : "introduce"</li>
+    <div class="container">
+        <div class="header-section">
+            <h1>내 프로필</h1>
+            <p style="color: #666; margin:0; font-size: 0.95rem;">"name"님 환영합니다!</p>
+        </div>
+        <ul class="info-list">
+            <li><span class="info-label">이름</span><span class="info-value">"name"</span></li>
+            <li><span class="info-label">멤버 번호</span><span class="info-value">"member_id"</span></li>
+            <li><span class="info-label">성별</span><span class="info-value">"gender"</span></li>
+            <li><span class="info-label">나이대</span><span class="info-value">"age"</span></li>
+            <li><span class="info-label">지역</span><span class="info-value">"region"</span></li>
+            <li><span class="info-label">급수</span><span class="info-value">"level"</span></li>
+            <li><span class="info-label">경험 년수</span><span class="info-value">"experience_years"</span></li>
+            <li style="flex-direction: column; gap: 10px; align-items: flex-start;">
+                <span class="info-label">자기소개</span>
+                <div class="info-value"
+                    style="width: 100%; text-align: left; background: #f9f9f9; padding: 15px; border-radius: 8px; box-sizing: border-box; line-height: 1.5;">
+                    "introduce"</div>
+            </li>
         </ul>
-    </fieldset>
+    </div>
+
     <div class="menu">
         <img class="home" src="img/home.png" alt="홈" width="30" height="30">
-
         <img class="records" src="img/pen.png" alt="기록" width="30" height="30">
-
         <img class="game" src="img/game.png" alt="게임" width="30" height="30">
-  
         <img class="setting" src="img/setting.png" alt="설정" width="30" height="30">
-
     </div>
 
 </body>
+
 </html>

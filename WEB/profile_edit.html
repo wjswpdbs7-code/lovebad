@@ -16,16 +16,38 @@
             font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
             background-color: #f7f9fc;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             padding: 20px;
+            margin: 0;
+        }
+
+        .menu {
+            margin-top: 50px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 90%;
+            max-width: 400px;
+            background-color: white;
+            padding: 15px;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+
+        .menu img {
+            cursor: pointer;
+            margin: 0 10px;
         }
 
         .profile-container {
             background-color: #ffffff;
             width: 100%;
-            max-width: 700px; /* 폼이 두 단으로 나뉠 수 있도록 넓이를 확장 */
+            max-width: 700px;
+            /* 폼이 두 단으로 나뉠 수 있도록 넓이를 확장 */
             padding: 40px;
             border-radius: 12px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
@@ -148,7 +170,8 @@
             display: flex;
             gap: 15px;
             height: 100%;
-            align-items: center; /* 수직 중앙 정렬 */
+            align-items: center;
+            /* 수직 중앙 정렬 */
             padding: 12px 0;
         }
 
@@ -209,7 +232,8 @@
             }
 
             .action-buttons {
-                flex-direction: column-reverse; /* 모바일엔 취소가 아래로, 저장이 위로 가도록 설정 */
+                flex-direction: column-reverse;
+                /* 모바일엔 취소가 아래로, 저장이 위로 가도록 설정 */
             }
         }
     </style>
@@ -219,12 +243,12 @@
 
     <div class="profile-container">
         <div class="profile-header">
-            <h1>내 프로필</h1>
+            <h1>내 프로필 편집</h1>
             <p>나의 배드민턴 플레이어 정보를 관리하세요.</p>
         </div>
 
         <form action="#" method="POST" onsubmit="alert('프로필 정보가 수정되었습니다!'); return false;">
-            
+
 
 
             <!-- 로그인 및 기본 정보 섹션 -->
@@ -233,26 +257,27 @@
                 <div class="form-grid">
                     <div class="form-group">
                         <label for="userId">아이디 (변경 불가)</label>
-                        <input type="text" id="userId" class="form-control" value="badminton_lover" disabled style="background-color: #f7f9fc; cursor: not-allowed;">
+                        <input type="text" id="userId" class="form-control" value="badminton_lover" disabled
+                            style="background-color: #f7f9fc; cursor: not-allowed;">
                     </div>
 
-                    
+
                     <div class="form-group">
                         <label for="userPw">새 비밀번호</label>
                         <input type="password" id="userPw" class="form-control" placeholder="변경할 경우에만 입력">
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="userPwConfirm">새 비밀번호 확인</label>
                         <input type="password" id="userPwConfirm" class="form-control" placeholder="비밀번호 재입력">
                     </div>
                 </div>
             </div>
-            
+
             <!-- 플레이어 성향 및 상세 정보 섹션 -->
             <div class="form-section">
                 <div class="form-section-title">플레이어 상세 정보</div>
-                
+
                 <div class="form-grid">
                     <div class="form-group">
                         <label>성별</label>
@@ -266,10 +291,10 @@
                             </label>
                         </div>
                     </div>
-                        <div class="form-group">
-                            <label for="userName">이름(닉네임)</label>
-                            <input type="text" id="userName" class="form-control" value="스매시장인" required>
-                        </div>
+                    <div class="form-group">
+                        <label for="userName">이름(닉네임)</label>
+                        <input type="text" id="userName" class="form-control" value="스매시장인" required>
+                    </div>
 
                     <div class="form-group">
                         <label>주사용 손 (주손)</label>
@@ -329,27 +354,26 @@
 
                     <div class="form-group full-width">
                         <label for="selfIntro">자기소개</label>
-                        <textarea id="selfIntro" class="form-control" placeholder="ex: 안녕하세요! 배드민턴을 사랑하는 30대입니다.">배드민턴을 사랑하는 20대 플레이어입니다.</textarea>
+                        <textarea id="selfIntro" class="form-control"
+                            placeholder="ex: 안녕하세요! 배드민턴을 사랑하는 30대입니다.">배드민턴을 사랑하는 20대 플레이어입니다.</textarea>
                     </div>
                 </div>
             </div>
 
             <div class="action-buttons">
-                <button type="button" class="btn btn-secondary" onclick="alert('로그아웃 되었습니다.'); location.href='login.html';">로그아웃</button>
+                <button type="button" class="btn btn-secondary"
+                    onclick="alert('로그아웃 되었습니다.'); location.href='login.html';">로그아웃</button>
                 <button type="button" class="btn btn-secondary" onclick="history.back();">취소</button>
                 <button type="submit" class="btn btn-primary">변경사항 저장</button>
             </div>
+        </form>
+    </div>
+
     <div class="menu">
         <img class="home" src="img/home.png" alt="홈" width="30" height="30">
-
         <img class="records" src="img/pen.png" alt="기록" width="30" height="30">
-
         <img class="game" src="img/game.png" alt="게임" width="30" height="30">
-  
         <img class="setting" src="img/setting.png" alt="설정" width="30" height="30">
-
-    </div>
-        </form>
     </div>
 
 </body>

@@ -22,11 +22,13 @@
 
             --divider-color: rgba(255, 255, 255, 0.3);
         }
+
         /*root에서 설정하면 따로따로 변경안해도 되서 편한듯?*/
         /* ---------------------------------------------------
            기본 뼈대 설정
            --------------------------------------------------- */
-        * { /* 별(*)의 뜻은 모든 요소 */
+        * {
+            /* 별(*)의 뜻은 모든 요소 */
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -44,8 +46,8 @@
             align-items: center;
             overflow: hidden;
             background-color: #333;
-            
-                                        
+
+
         }
 
         /* 메인 전체 틀 */
@@ -62,12 +64,12 @@
            --------------------------------------------------- */
         #player1-zone {
             flex: 1;
-            position: relative; 
+            position: relative;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(135deg, var(--p1-bg-start), var(--p1-bg-end)); 
+            background: linear-gradient(135deg, var(--p1-bg-start), var(--p1-bg-end));
             cursor: pointer;
 
             /* 클릭 가능한 영역임을 표시 */
