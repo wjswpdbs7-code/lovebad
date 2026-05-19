@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <!-- 언어셋을 UTF-8로 강제 지정하여 한글 및 이모지 깨짐 현상 해결 -->
+    <meta charset="UTF-8">
+    <!-- 모바일 화면 비율 유지 및 확대를 방지하기 위한 viewport 설정 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Badminton Game</title>
+    <style>
+        /* ====================================================
+           💡 색상 테마 설정
+           ==================================================== */
+        :root {
+            --p1-bg-start: #ff7e5f;
+            --p1-bg-end: #feb47b;
+            --p1-ripple: rgba(255, 255, 255, 0.6);
+
+            --p2-bg-start: #00c6ff;
+            --p2-bg-end: #0072ff;
+            --p2-ripple: rgba(255, 255, 255, 0.6);
+
+            --divider-color: rgba(255, 255, 255, 0.3);
+        }
+        /*root에서 설정하면 따로따로 변경안해도 되서 편한듯?*/
+        /* ---------------------------------------------------
+           기본 뼈대 설정
+           --------------------------------------------------- */
+        * { /* 별(*)의 뜻은 모든 요소 */
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+            color: #ffffff;
+
+            /* 핵심 수정: 모바일 네비게이션 바 잘림 현상 방지를 위해 100dvh(동적 높이) 사용 */
+            height: 100dvh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background-color: #333;
+            
+                                        
+        }
+
+        /* 메인 전체 틀 */
+        .battle-container {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            max-width: 1200px;
+            position: relative;
+        }
+
+        /* ---------------------------------------------------
+           🔴 플레이어 1 (독립 컨테이너) 세팅
+           --------------------------------------------------- */
+        #player1-zone {
+            flex: 1;
+            position: relative; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, var(--p1-bg-start), var(--p1-bg-end)); 
+            cursor: pointer;
+
+            /* 클릭 가능한 영역임을 표시 */
+        }
+
+        #player1-zone .player-info {
+            position: absolute;
+            top: 5%;
+            left: 10%;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            width: 80%;
+            justify-content: flex-start;
+            padding: 10px 20px;
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 50px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #player1-zone .ripple {
+            border: 2px solid var(--p1-ripple);
+        }
+
+        /* ---------------------------------------------------
+           🔵 플레이어 2 (독립 컨테이너) 세팅
+           --------------------------------------------------- */
+        #player2-zone {
+            flex: 1;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, var(--p2-bg-start), var(--p2-bg-end));
+            cursor: pointer;
+        }
+
+        #player2-zone .player-info {
+            position: absolute;
+            top: 5%;
+            right: 10%;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            width: 80%;
+            justify-content: flex-end;
+            flex-direction: row;
+            padding: 10px 20px;
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 50px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #player2-zone .ripple {
+            border: 2px solid var(--p2-ripple);
+        }
+
+        /* ---------------------------------------------------
+           공통 디자인 (프로필 사진, 점수 등)
+           --------------------------------------------------- */
+        .profile-img {
+            width: clamp(50px, 8vw, 80px);
+            height: clamp(50px, 8vw, 80px);
+            border-radius: 50%;
+            background-color: #f1f1f1;
+            border: 2px solid rgba(255, 255, 255, 0.9);
+            object-fit: cover;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .player-name {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-weight: 600;
+        }
+
+        .score {
+            font-size: clamp(4rem, 12vw, 9rem);
+            font-weight: 800;
+            line-height: 1;
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            z-index: 5;
+        }
+
+        .deco-icon {
+            position: absolute;
+            font-size: clamp(3rem, 8vw, 6rem);
+            opacity: 0.15;
+            top: 50%;
+        }
+
+        #player1-zone .deco-icon {
+            left: 10%;
+            transform: translateY(-50%) rotate(-30deg);
+        }
+
+        #player2-zone .deco-icon {
+            right: 10%;
+            transform: translateY(-50%) rotate(30deg);
+        }
+
+        /* 터치(물결) 애니메이션 설정 */
+        .tap-area {
+            position: absolute;
+            bottom: 15%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100px;
+            height: 100px;
+        }
+
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: ripple-anim 2s infinite ease-out;
+        }
+
+        .ripple:nth-child(1) {
+            width: 30px;
+            height: 30px;
+            animation-delay: 0s;
+        }
+
+        .ripple:nth-child(2) {
+            width: 60px;
+            height: 60px;
+            animation-delay: 0.5s;
+            opacity: 0.5;
+        }
+
+        .ripple:nth-child(3) {
+            width: 90px;
+            height: 90px;
+            animation-delay: 1s;
+            opacity: 0.2;
+        }
+
+        @keyframes ripple-anim {
+            0% {
+                transform: scale(0.5);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+
+        /* ---------------------------------------------------
+           경계선 및 VS 로고 배치
+           --------------------------------------------------- */
+        .divider {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background-color: var(--divider-color);
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .divider .vs {
+            font-size: 3rem;
+            font-weight: bold;
+            background-color: transparent;
+            padding: 10px 20px;
+            color: #ffffff;
+            text-transform: lowercase;
+            text-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+            font-style: italic;
+        }
+
+        /* ====================================================
+           📱 스마트폰 세로 모드 대응 (미디어 쿼리)
+           ==================================================== */
+        @media screen and (max-aspect-ratio: 1/1) {
+            .battle-container {
+                flex-direction: column;
+            }
+
+            .divider {
+                width: 100%;
+                height: 2px;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            #player1-zone .player-info {
+                top: 5%;
+                left: 10%;
+                width: 80%;
+                justify-content: flex-start;
+            }
+
+            #player2-zone .player-info {
+                top: auto;
+                bottom: 5%;
+                left: 10%;
+                right: auto;
+                width: 80%;
+                justify-content: flex-start;
+                flex-direction: row-reverse;
+            }
+
+            #player1-zone .tap-area {
+                bottom: 10%;
+            }
+
+            #player2-zone .tap-area {
+                bottom: auto;
+                top: 10%;
+            }
+
+            .deco-icon {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="battle-container">
+
+        <div id="player1-zone">
+            <div class="player-info">
+                <img src="img/player1.JPG" alt="Player 1 Profile" class="profile-img">
+                <div class="player-name">player1</div>
+            </div>
+
+            <div class="score">0</div>
+            <div class="deco-icon">🏸</div>
+
+            <div class="tap-area">
+                <div class="ripple"></div>
+                <div class="ripple"></div>
+                <div class="ripple"></div>
+            </div>
+        </div>
+
+        <div class="divider">
+            <div class="vs">vs</div>
+        </div>
+
+        <div id="player2-zone">
+            <div class="player-info">
+                <div class="player-name">player2</div>
+                <img src="img/player2.JPG" alt="Player 2 Profile" class="profile-img">
+            </div>
+
+            <div class="score">0</div>
+            <div class="deco-icon">🏸</div>
+
+            <div class="tap-area">
+                <div class="ripple"></div>
+                <div class="ripple"></div>
+                <div class="ripple"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JS 스크립트 -->
+    <script>
+        let score1 = 0;
+        let score2 = 0;
+
+        const score1Display = document.querySelector('#player1-zone .score');
+        const score2Display = document.querySelector('#player2-zone .score');
+        const zone1 = document.getElementById('player1-zone');
+        const zone2 = document.getElementById('player2-zone');
+
+        function checkWin() {
+            setTimeout(() => {
+                if (score1 === 30) {
+                    alert("player1 승리! 🎉 (30점 도달)");
+                    resetGame();
+                    return;
+                } else if (score2 === 30) {
+                    alert("player2 승리! 🎉 (30점 도달)");
+                    resetGame();
+                    return;
+                }
+
+                if (score1 >= 21 && (score1 - score2) >= 2) {
+                    alert("player1 승리! 🎉");
+                    resetGame();
+                } else if (score2 >= 21 && (score2 - score1) >= 2) {
+                    alert("player2 승리! 🎉");
+                    resetGame();
+                }
+            }, 50);
+        }
+
+        function resetGame() {
+            score1 = 0;
+            score2 = 0;
+            score1Display.innerText = score1;
+            score2Display.innerText = score2;
+        }
+
+        zone1.addEventListener('click', () => {
+            score1++;
+            score1Display.innerText = score1;
+            checkWin();
+        });
+
+        zone2.addEventListener('click', () => {
+            score2++;
+            score2Display.innerText = score2;
+            checkWin();
+        });
+    </script>
+</body>
+
+</html>
