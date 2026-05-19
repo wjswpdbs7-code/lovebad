@@ -6,12 +6,28 @@
     <title>LOVEBAD - home</title>
     <style>
         body{
-            background-color: orange;
+            background-color: white;
+                font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+        }
+        .menu{
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            background-color: white;
+        }
+        .menu a{
+            text-decoration: none;
+            color: #333;
+            padding: 10px 20px;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+            margin: 0 10px;
+            border: 2px solid orange;
         }
         .welcome{
             text-align: center;
             margin-top: 0px;
-            background-color:   white;
+            background-color:orange;
             border-radius: 20px;
             color: #ff6600;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
@@ -20,6 +36,7 @@
             margin-top: 30px;
             display: flex;
             justify-content: center;
+            background-color: white;
         }
         .profile ul{
             list-style: none;
@@ -39,7 +56,8 @@
     <div class="welcome">
         <h1>"name"님 환영합니다!</h1>
     </div>
-    <div class="profile">
+    <fieldset id="profile">
+        <legend>프로필 정보</legend>
         <ul>
             <li>이름 : "name"</li>
             <li>멤버 번호    : "member_id"</li>
@@ -50,12 +68,12 @@
             <li>경험 년수 : "experience_years"</li>
             <li>자기소개 : "introduce"</li>
         </ul>
-    </div>
+    </fieldset>
     <div class="menu">
-        <a href="/home.html">홈</a>
-        <a href="/records.html">기록</a>
-        <a href="/game_screen.html">게임</a>
-        <a href="/profile_edit.html">설정</a>
+        <a href="/lovebad/WEB/home.html">홈</a>
+        <a href="/lovebad/WEB/records.html">기록</a>
+        <a href="/lovebad/WEB/game_screen.html">게임</a>
+        <a href="/lovebad/WEB/profile_edit.html">설정</a>
     </div>
 
 </body>
