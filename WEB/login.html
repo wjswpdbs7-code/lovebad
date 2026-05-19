@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <style>
+        .body{
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            background-color: orange;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .logo{
+            text-align: center;
+            margin-bottom: 20px;
+            font-style: italic;
+            color : white;
+        }
+        
+    </style>
+</head>    
+    <body>
+        <div class="container">
+            <div class="logo">
+                <h1>LOVEBAD</h1>
+                <p style="font-size: 10px; color: white;">누구나 쉽게 배드민턴 매칭!</p>
+            </div>
+            <fieldset>
+                <legend>login</legend>
+                <div><input type = "text" name = "id" value = "" required placeholder="아이디를 입력하세요"></div>
+                <div><input type = "password" name = "pw" value = "" required placeholder="비밀번호를 입력하세요"></div>
+            </fieldset>
+            <div>
+                <input type = "submit" value = "로그인">
+            </div>
+            <div>
+                <a href="#" style="color: white; text-decoration: underline;">회원가입</a>
+            </div>
+        </div>
+    </body>
+</html>
+
+<!-- login 구조 -->
