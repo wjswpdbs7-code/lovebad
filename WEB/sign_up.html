@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lovebad - sign_up</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+            background-color: #f7f9fc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .signup-container {
+            display: flex;
+            flex-direction: column;
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 500px;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .signup-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .signup-header h1 {
+            color: #ff6600;
+            /* 배드민턴 테마의 메인 오렌지색 */
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .signup-header p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .form-section {
+            margin-bottom: 25px;
+        }
+
+        .form-section-title {
+            font-size: 1.1rem;
+            color: #333;
+            border-bottom: 2px solid #ff6600;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #444;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: #ff6600;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 102, 0, 0.1);
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 15px;
+        }
+
+        .radio-label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            color: #555;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background-color: #ff6600;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            background-color: #e65c00;
+        }
+
+        @media (max-width: 480px) {
+            .signup-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="signup-container">
+        <div class="signup-header">
+            <h1>회원가입</h1>
+            <p>배드민턴 매칭 서비스에 오신 것을 환영합니다!</p>
+        </div>
+
+        <form action="#" method="POST" onsubmit="alert('회원가입 정보가 등록되었습니다!'); return false;"> 
+
+            <div class="form-section">
+                <div class="form-section-title">로그인 정보</div>
+
+                <div class="form-group">
+                    <label for="userId">아이디</label>
+                    <input type="text" id="userId" class="form-control" placeholder="아이디를 입력하세요" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="userPw">비밀번호</label>
+                    <input type="password" id="userPw" class="form-control" placeholder="비밀번호를 입력하세요" required>
+                </div>
+                <div class="form-group">
+                    <label for="userPwConfirm">비밀번호 확인</label>
+                    <input type="password" id="userPwConfirm" class="form-control" placeholder="비밀번호를 다시 입력하세요" required>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div class="form-section-title">플레이어 정보</div>
+
+
+                <div class="form-group">
+                    <label for="userName">이름(닉네임)</label>
+                    <input type="text" id="userName" class="form-control" placeholder="이름 또는 닉네임을 입력하세요" required>
+                </div>
+
+                <div class="form-group">
+                    <label>성별</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="gender" value="male" required> 남성
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="gender" value="female"> 여성
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="ageGroup">나이대</label>
+                    <select id="ageGroup" class="form-control" required>
+                        <option value="">선택해주세요</option>
+                        <option value="10">10대</option>
+                        <option value="20">20대</option>
+                        <option value="30">30대</option>
+                        <option value="40">40대</option>
+                        <option value="50">50대 이상</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="region">주소</label>
+                    <input type="text" id="region" class="form-control" placeholder="예: 서울시 강남구" required>
+                </div>
+
+                <div class="form-group">
+                    <label>주사용 손 (주손)</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="dominantHand" value="right" required> 오른손
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="dominantHand" value="left"> 왼손
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="dominantHand" value="both"> 양손
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="playLevel">급수</label>
+                    <select id="playLevel" class="form-control" required>
+                        <option value="">선택해주세요</option>
+                        <option value="a">a</option>
+                        <option value="b">b</option>
+                        <option value="c">c</option>
+                        <option value="d">d</option>
+                        <option value="e">e</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="experience_period">배드민턴 경험 기간</label>
+                    <select id="experience_period" class="form-control" required>
+                        <option value="">선택해주세요</option>
+                        <option value="1">1년 미만</option>
+                        <option value="2">1-3년</option>
+                        <option value="3">3-5년</option>
+                        <option value="4">5-10년</option>
+                        <option value="5">10년 이상</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="selfIntro">자기소개</label>
+                    <textarea id="selfIntro" class="form-control" placeholder="ex: 안녕하세요! 배드민턴을 사랑하는 30대 주부입니다."></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit">가입 완료하기</button>
+
+        </form>
+    </div>
+
+</body>
+
+</html>

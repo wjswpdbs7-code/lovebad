@@ -3,23 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>login</title>
+    <title>lovebad - login</title>
     <style>
         .body{
             margin: 0;
             padding: 0;
         }
         .container{
-            background-color: orange;
+            
+            border-radius: 12px;
+            background-color: #ff6600;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            height: 100vh;
+            height: 1000px;
             position: absolute;
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
+            padding: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    
         }
         .logo{
             text-align: center;
@@ -27,7 +32,61 @@
             font-style: italic;
             color : white;
         }
+        fieldset{
+            border: 1px solid white;
+            padding: 30px;
+            margin-bottom: 20px;
+            width: 300px;
+        }
         
+        .form-group{
+            margin-bottom: 15px;
+        }
+
+        .form-group input{
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px; 
+        }
+
+        .form-label{
+            font-size: 20px;
+            color: white;
+            margin-bottom: 10px;
+        }
+        .btn{
+            background-color: white;
+            color: #ff6600;
+            border: none;
+            padding: 10px 20px;
+            width: 150px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn:hover{
+            background-color: #e65c00;
+            color: white;
+
+        }
+        .href{
+
+            margin-top: 10px;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            text-align: center;
+            display: block; 
+        }
+        .href:hover{
+            text-decoration: underline;
+        }
+        h1{
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
     </style>
 </head>    
     <body>
@@ -37,15 +96,19 @@
                 <p style="font-size: 10px; color: white;">누구나 쉽게 배드민턴 매칭!</p>
             </div>
             <fieldset>
-                <legend>login</legend>
-                <div><input type = "text" name = "id" value = "" required placeholder="아이디를 입력하세요"></div>
-                <div><input type = "password" name = "pw" value = "" required placeholder="비밀번호를 입력하세요"></div>
+                <legend class="form-label">LOGIN</legend>
+                <div class="form-group">
+                    <input class = "form-control" type = "text" name = "id" value = "" required placeholder="아이디를 입력하세요">
+                </div>
+                <div class="form-group">
+                    <input class = "form-control" type = "password" name = "pw" value = "" required placeholder="비밀번호를 입력하세요">
+                </div>
             </fieldset>
             <div>
-                <input type = "submit" value = "로그인">
+                <input class="btn" type = "submit" value = "로그인">
             </div>
             <div>
-                <a href="#" style="color: white; text-decoration: underline;">회원가입</a>
+                <a class="href" href="#">회원이 아니신가요? 회원가입 하기</a>
             </div>
         </div>
     </body>
